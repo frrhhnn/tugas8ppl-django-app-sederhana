@@ -1,0 +1,162 @@
+{% extends 'produk/base.html' %}
+{% block title %}Tambah Produk - Toko Kita{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">
+            <i class="fas fa-plus-circle text-primary-600 mr-2"></i> Tambah Produk Baru
+        </h2>
+        <a href="/produk/" class="flex items-center text-gray-600 hover:text-primary-600 transition duration-200">
+            <i class="fas fa-arrow-left mr-1"></i> Kembali ke Daftar Produk
+        </a>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="bg-primary-50 px-6 py-4 border-b border-primary-100">
+            <h3 class="text-lg font-medium text-primary-800">Informasi Produk</h3>
+            <p class="text-primary-600 text-sm">Silakan isi informasi produk dengan lengkap</p>
+        </div>
+
+        <form class="p-6 space-y-6">
+            <!-- Informasi Dasar -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label for="nama" class="block text-sm font-medium text-gray-700">Nama Produk <span class="text-red-500">*</span></label>
+                    <input type="text" id="nama" name="nama" required placeholder="Masukkan nama produk" class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="kategori" class="block text-sm font-medium text-gray-700">Kategori <span class="text-red-500">*</span></label>
+                    <select id="kategori" name="kategori" required class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                        <option value="" disabled selected>Pilih kategori</option>
+                        <option value="pakaian">Pakaian</option>
+                        <option value="elektronik">Elektronik</option>
+                        <option value="rumah_tangga">Rumah Tangga</option>
+                        <option value="dapur">Dapur</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Harga dan Stok -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="space-y-2">
+                    <label for="harga" class="block text-sm font-medium text-gray-700">Harga (Rp) <span class="text-red-500">*</span></label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500 sm:text-sm">Rp</span>
+                        </div>
+                        <input type="number" id="harga" name="harga" required placeholder="0" min="0" class="w-full pl-12 p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="diskon" class="block text-sm font-medium text-gray-700">Diskon (%)</label>
+                    <div class="relative">
+                        <input type="number" id="diskon" name="diskon" placeholder="0" min="0" max="100" class="w-full pr-10 p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500 sm:text-sm">%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label for="stok" class="block text-sm font-medium text-gray-700">Stok <span class="text-red-500">*</span></label>
+                    <input type="number" id="stok" name="stok" required placeholder="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                </div>
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="space-y-2">
+                <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi Produk <span class="text-red-500">*</span></label>
+                <textarea id="deskripsi" name="deskripsi" rows="4" required placeholder="Tuliskan deskripsi lengkap produk..." class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"></textarea>
+            </div>
+
+            <!-- Spesifikasi -->
+            <div class="space-y-2">
+                <label for="spesifikasi" class="block text-sm font-medium text-gray-700">Spesifikasi</label>
+                <textarea id="spesifikasi" name="spesifikasi" rows="3" placeholder="Tuliskan spesifikasi produk (berat, ukuran, warna, dll)..." class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"></textarea>
+            </div>
+
+            <!-- Upload Gambar -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Foto Produk</label>
+                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="space-y-1 text-center">
+                        <i class="fas fa-cloud-upload-alt mx-auto h-12 w-12 text-gray-400"></i>
+                        <div class="flex text-sm text-gray-600">
+                            <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500">
+                                <span>Upload gambar</span>
+                                <input id="file-upload" name="file-upload" type="file" class="sr-only" accept="image/*" multiple>
+                            </label>
+                            <p class="pl-1">atau seret dan lepas file di sini</p>
+                        </div>
+                        <p class="text-xs text-gray-500">PNG, JPG, GIF hingga 10MB</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail Tambahan -->
+            <div class="border rounded-md overflow-hidden">
+                <div class="p-4 bg-gray-50 border-b cursor-pointer flex justify-between items-center">
+                    <h4 class="font-medium text-gray-700">Detail Tambahan (Opsional)</h4>
+                    <i class="fas fa-chevron-down text-gray-500"></i>
+                </div>
+                <div class="p-4 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="berat" class="block text-sm font-medium text-gray-700">Berat (gram)</label>
+                            <input type="number" id="berat" name="berat" placeholder="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="kondisi" class="block text-sm font-medium text-gray-700">Kondisi</label>
+                            <select id="kondisi" name="kondisi" class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                                <option value="baru" selected>Baru</option>
+                                <option value="bekas">Bekas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="tags" class="block text-sm font-medium text-gray-700">Tag Produk</label>
+                        <input type="text" id="tags" name="tags" placeholder="Pisahkan dengan koma (contoh: baju, murah, terbaru)" class="w-full p-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Submit -->
+            <div class="flex justify-end space-x-3 pt-4 border-t">
+                <button type="button" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                    Batal
+                </button>
+                <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                    <i class="fas fa-save mr-1"></i> Simpan Produk
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-md p-4">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <i class="fas fa-info-circle text-blue-400"></i>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-blue-800">Informasi</h3>
+                <div class="mt-2 text-sm text-blue-700">
+                    <p>Produk yang Anda tambahkan akan ditinjau terlebih dahulu sebelum ditampilkan di halaman utama. Proses peninjauan memakan waktu 1-2 hari kerja.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Preview gambar saat diupload
+    document.getElementById('file-upload').addEventListener('change', function(event) {
+        // Kode untuk preview gambar bisa ditambahkan di sini
+    });
+</script>
+{% endblock %}
