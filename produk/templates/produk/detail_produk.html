@@ -1,0 +1,466 @@
+{% extends 'produk/base.html' %}
+{% block title %}{{ produk.nama|default:"Detail Produk" }} - Toko Kita{% endblock %}
+
+{% block hero %}
+<!-- Custom breadcrumb untuk halaman detail -->
+<section class="bg-primary-700 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+                <li>
+                    <a href="/" class="text-primary-200 hover:text-white transition">
+                        <i class="fas fa-home"></i>
+                        <span class="sr-only">Beranda</span>
+                    </a>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-chevron-right text-primary-400 text-xs mx-1"></i>
+                    <a href="/produk/" class="text-primary-200 hover:text-white transition">Produk</a>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-chevron-right text-primary-400 text-xs mx-1"></i>
+                    <span class="text-white font-medium">Detail Produk</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="mb-10">
+    <!-- Product Detail Card -->
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="lg:flex">
+            <!-- Product Gallery -->
+            <div class="lg:w-2/5">
+                <div class="sticky top-20">
+                    <!-- Main Image -->
+                    <div class="border-b border-gray-200 lg:border-b-0 lg:border-r">
+                        <div class="relative h-72 sm:h-80 lg:h-96 overflow-hidden bg-gray-100">
+                            <img id="main-image" src="/api/placeholder/600/600" alt="Smartphone XYZ" class="w-full h-full object-contain p-4">
+                            <!-- Badges -->
+                            <div class="absolute top-0 left-0 p-4 space-y-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-primary-100 text-primary-800">
+                                    <i class="fas fa-check-circle mr-1"></i> Original
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800 block">
+                                    <i class="fas fa-shipping-fast mr-1"></i> Gratis Ongkir
+                                </span>
+                            </div>
+                            <!-- New badge -->
+                            <div class="absolute top-0 right-0 m-4">
+                                <span class="bg-primary-500 text-white text-xs font-bold px-2.5 py-1.5 rounded">BARU</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Thumbnail Gallery -->
+                        <div class="grid grid-cols-5 gap-2 p-4 border-t border-gray-200">
+                            <div class="thumbnail-item h-16 bg-gray-100 rounded border-2 border-primary-500 cursor-pointer overflow-hidden">
+                                <img src="/api/placeholder/100/100" alt="Thumbnail 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="thumbnail-item h-16 bg-gray-100 rounded border border-gray-200 hover:border-primary-500 cursor-pointer overflow-hidden">
+                                <img src="/api/placeholder/100/100" alt="Thumbnail 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="thumbnail-item h-16 bg-gray-100 rounded border border-gray-200 hover:border-primary-500 cursor-pointer overflow-hidden">
+                                <img src="/api/placeholder/100/100" alt="Thumbnail 3" class="w-full h-full object-cover">
+                            </div>
+                            <div class="thumbnail-item h-16 bg-gray-100 rounded border border-gray-200 hover:border-primary-500 cursor-pointer overflow-hidden">
+                                <img src="/api/placeholder/100/100" alt="Thumbnail 4" class="w-full h-full object-cover">
+                            </div>
+                            <div class="thumbnail-item h-16 bg-gray-100 rounded border border-gray-200 hover:border-primary-500 cursor-pointer overflow-hidden">
+                                <div class="w-full h-full flex items-center justify-center bg-gray-200">
+                                    <i class="fas fa-play-circle text-gray-500 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="lg:w-3/5 p-6">
+                <!-- Store info & SKU -->
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-store text-primary-600 mr-2"></i>
+                        <span class="text-sm text-gray-600">Toko Kita Official</span>
+                        <i class="fas fa-check-circle text-primary-600 ml-1"></i>
+                    </div>
+                    <span class="text-sm text-gray-500">SKU: XYZ12345 | ID: {{ id|default:"001" }}</span>
+                </div>
+                
+                <!-- Product Title & Rating -->
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Smartphone XYZ Pro 12 - Flagship Series</h1>
+                
+                <div class="flex items-center mb-4">
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="ml-2 text-sm text-gray-600">4.5 (120 ulasan)</span>
+                    <span class="mx-2 text-gray-300">|</span>
+                    <span class="text-sm text-gray-600"><i class="fas fa-box-open text-gray-500 mr-1"></i> 350 terjual</span>
+                </div>
+                
+                <!-- Price -->
+                <div class="mb-6">
+                    <div class="flex items-baseline">
+                        <span class="text-3xl font-bold text-primary-600">Rp 8.999.000</span>
+                        <span class="ml-3 text-lg text-gray-400 line-through">Rp 10.499.000</span>
+                        <span class="ml-3 text-sm font-medium text-red-600 bg-red-100 px-2 py-0.5 rounded">Hemat 15%</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Harga termasuk PPN</p>
+                </div>
+                
+                <!-- Description -->
+                <div class="prose prose-sm max-w-none mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Deskripsi</h3>
+                    <p class="text-gray-700 mb-3">
+                        Smartphone XYZ Pro 12 adalah smartphone flagship terbaru dengan teknologi terkini. Dilengkapi dengan chipset tercepat, kamera profesional, dan baterai tahan lama untuk pengalaman penggunaan yang maksimal.
+                    </p>
+                    <ul class="space-y-1 text-gray-700 list-disc pl-5">
+                        <li>Layar AMOLED 6.7 inch dengan refresh rate 120Hz</li>
+                        <li>Prosesor terbaru dengan RAM 12GB dan penyimpanan 256GB</li>
+                        <li>Sistem kamera quad 108MP dengan stabilisasi optik</li>
+                        <li>Baterai 5000mAh dengan teknologi fast charging 67W</li>
+                        <li>Tahan air dan debu dengan sertifikasi IP68</li>
+                    </ul>
+                </div>
+                
+                <!-- Color & Variants -->
+                <div class="mb-6">
+                    <h3 class="text-sm font-medium text-gray-900 mb-3">Pilih Warna</h3>
+                    <div class="flex space-x-3">
+                        <button class="w-10 h-10 rounded-full bg-blue-500 ring-2 ring-blue-500 ring-offset-2 focus:outline-none"></button>
+                        <button class="w-10 h-10 rounded-full bg-black focus:outline-none hover:ring-2 hover:ring-gray-500 hover:ring-offset-2"></button>
+                        <button class="w-10 h-10 rounded-full bg-gray-200 focus:outline-none hover:ring-2 hover:ring-gray-500 hover:ring-offset-2"></button>
+                        <button class="w-10 h-10 rounded-full bg-green-600 focus:outline-none hover:ring-2 hover:ring-green-600 hover:ring-offset-2"></button>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-sm font-medium text-gray-900 mb-3">Pilih Kapasitas</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button class="border rounded-md py-2 px-3 flex items-center justify-center text-sm font-medium hover:border-primary-500 hover:text-primary-600 focus:outline-none">
+                            128GB / 8GB
+                        </button>
+                        <button class="border-2 border-primary-500 rounded-md py-2 px-3 flex items-center justify-center text-sm font-medium text-primary-600 bg-primary-50">
+                            256GB / 12GB
+                        </button>
+                        <button class="border rounded-md py-2 px-3 flex items-center justify-center text-sm font-medium hover:border-primary-500 hover:text-primary-600 focus:outline-none">
+                            512GB / 12GB
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quantity and CTA -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-sm font-medium text-gray-900">Jumlah</span>
+                            <div class="flex border border-gray-300 rounded-md">
+                                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100">−</button>
+                                <input type="number" min="1" value="1" class="w-12 text-center focus:outline-none">
+                                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100">+</button>
+                            </div>
+                            <span class="text-sm text-gray-500">Tersisa 24 unit</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="flex space-x-4 mb-6">
+                    <button class="flex-1 bg-primary-600 text-white py-3 px-6 rounded-md font-medium hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang
+                    </button>
+                    <button class="flex-1 bg-white border border-primary-600 text-primary-600 py-3 px-6 rounded-md font-medium hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                        <i class="fas fa-plus mr-2"></i> Tambah ke Keranjang
+                    </button>
+                </div>
+                
+                <!-- Shipping & Payment Info -->
+                <div class="border-t border-gray-200 pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Shipping -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-shipping-fast text-gray-400 mt-1"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-sm font-medium text-gray-900">Pengiriman</h4>
+                                <p class="text-sm text-gray-500">Gratis pengiriman untuk pembelian di atas Rp 500.000</p>
+                                <a href="#" class="text-sm text-primary-600 hover:text-primary-700">Cek estimasi</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Warranty -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-shield-alt text-gray-400 mt-1"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-sm font-medium text-gray-900">Garansi</h4>
+                                <p class="text-sm text-gray-500">Garansi resmi 12 bulan dari produsen</p>
+                                <a href="#" class="text-sm text-primary-600 hover:text-primary-700">Lihat kebijakan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social share -->
+                <div class="mt-6 flex items-center">
+                    <span class="text-sm text-gray-500 mr-4">Bagikan:</span>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-600"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-600"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Tabs -->
+    <div class="mt-10 bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="border-b border-gray-200">
+            <nav class="flex -mb-px">
+                <button class="py-4 px-6 border-b-2 border-primary-600 text-primary-600 font-medium text-sm">
+                    Spesifikasi
+                </button>
+                <button class="py-4 px-6 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 text-gray-500 font-medium text-sm">
+                    Ulasan (120)
+                </button>
+                <button class="py-4 px-6 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 text-gray-500 font-medium text-sm">
+                    Diskusi
+                </button>
+            </nav>
+        </div>
+        
+        <div class="p-6">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Spesifikasi Produk</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Informasi Umum</h4>
+                        <table class="w-full text-sm">
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500 w-1/3">Nama Produk</td>
+                                    <td class="py-2 text-gray-900">Smartphone XYZ Pro 12</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Brand</td>
+                                    <td class="py-2 text-gray-900">XYZ</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Series</td>
+                                    <td class="py-2 text-gray-900">Pro</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Warna</td>
+                                    <td class="py-2 text-gray-900">Biru, Hitam, Silver, Hijau</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-medium text-gray-500">Tanggal Rilis</td>
+                                    <td class="py-2 text-gray-900">Februari 2025</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Layar</h4>
+                        <table class="w-full text-sm">
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500 w-1/3">Ukuran</td>
+                                    <td class="py-2 text-gray-900">6.7 inch</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Tipe</td>
+                                    <td class="py-2 text-gray-900">AMOLED</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Resolusi</td>
+                                    <td class="py-2 text-gray-900">1440 x 3200 pixels</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Refresh Rate</td>
+                                    <td class="py-2 text-gray-900">120Hz</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-medium text-gray-500">Proteksi</td>
+                                    <td class="py-2 text-gray-900">Gorilla Glass Victus</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Performa</h4>
+                        <table class="w-full text-sm">
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500 w-1/3">Chipset</td>
+                                    <td class="py-2 text-gray-900">Snapdragon 8 Gen 3</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">CPU</td>
+                                    <td class="py-2 text-gray-900">Octa-core 3.2 GHz</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">RAM</td>
+                                    <td class="py-2 text-gray-900">8GB / 12GB LPDDR5X</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-medium text-gray-500">Storage</td>
+                                    <td class="py-2 text-gray-900">128GB / 256GB / 512GB UFS 4.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Kamera</h4>
+                        <table class="w-full text-sm">
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500 w-1/3">Kamera Utama</td>
+                                    <td class="py-2 text-gray-900">108MP (wide) + 48MP (ultrawide) + 12MP (telephoto) + 5MP (macro)</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="py-2 font-medium text-gray-500">Fitur</td>
+                                    <td class="py-2 text-gray-900">OIS, Night Mode, 8K Video</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-medium text-gray-500">Kamera Depan</td>
+                                    <td class="py-2 text-gray-900">32MP, HDR, 4K video</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Products -->
+    <div class="mt-10">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">Produk Terkait</h3>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <!-- Related Product 1 -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                <div class="h-36 bg-gray-100 overflow-hidden">
+                    <img class="w-full h-full object-cover object-center" src="/api/placeholder/200/200" alt="Produk">
+                </div>
+                <div class="p-3">
+                    <h4 class="text-sm font-medium text-gray-900 line-clamp-2">Smartphone XYZ Pro 10</h4>
+                    <p class="text-sm font-bold text-primary-600 mt-1">Rp 6.499.000</p>
+                    <div class="flex items-center mt-1">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">(98)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 2 -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                <div class="h-36 bg-gray-100 overflow-hidden">
+                    <img class="w-full h-full object-cover object-center" src="/api/placeholder/200/200" alt="Produk">
+                </div>
+                <div class="p-3">
+                    <h4 class="text-sm font-medium text-gray-900 line-clamp-2">XYZ Wireless Earbuds</h4>
+                    <p class="text-sm font-bold text-primary-600 mt-1">Rp 1.299.000</p>
+                    <div class="flex items-center mt-1">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">(120)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 3 -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                <div class="h-36 bg-gray-100 overflow-hidden">
+                    <img class="w-full h-full object-cover object-center" src="/api/placeholder/200/200" alt="Produk">
+                </div>
+                <div class="p-3">
+                    <h4 class="text-sm font-medium text-gray-900 line-clamp-2">Charger XYZ 67W Fast Charging</h4>
+                    <p class="text-sm font-bold text-primary-600 mt-1">Rp 499.000</p>
+                    <div class="flex items-center mt-1">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">(85)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 4 -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                <div class="h-36 bg-gray-100 overflow-hidden">
+                    <img class="w-full h-full object-cover object-center" src="/api/placeholder/200/200" alt="Produk">
+                </div>
+                <div class="p-3">
+                    <h4 class="text-sm font-medium text-gray-900 line-clamp-2">Casing XYZ Pro 12 Original</h4>
+                    <p class="text-sm font-bold text-primary-600 mt-1">Rp 299.000</p>
+                    <div class="flex items-center mt-1">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">(67)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Product 5 -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                <div class="h-36 bg-gray-100 overflow-hidden">
+                    <img class="w-full h-full object-cover object-center" src="/api/placeholder/200/200" alt="Produk">
+                </div>
+                <div class="p-3">
+                    <h4 class="text-sm font-medium text-gray-900 line-clamp-2">Screen Protector XYZ Pro 12</h4>
+                    <p class="text-sm font-bold text-primary-600 mt-1">Rp 149.000</p>
+                    <div class="flex items-center mt-1">
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-1">(42)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
