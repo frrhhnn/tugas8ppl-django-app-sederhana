@@ -1,0 +1,1 @@
+# tugas8ppl-django-app-sederhana
