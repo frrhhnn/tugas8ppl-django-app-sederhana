@@ -1,0 +1,106 @@
+{% extends 'produk/base.html' %}
+{% block title %}{{ produk.nama }} - Toko Kita{% endblock %}
+
+{% block hero %}
+<div class="bg-gradient-to-r from-indigo-700 to-indigo-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <nav class="flex mb-4" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm text-indigo-100">
+                <li>
+                    <a href="{% url 'home' %}" class="hover:text-white transition-colors flex items-center">
+                        <i class="bi bi-house-door mr-1"></i> Home
+                    </a>
+                </li>
+                <li class="flex items-center">
+                    <svg class="h-4 w-4 text-indigo-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <a href="{% url 'daftar_produk' %}" class="ml-2 hover:text-white transition-colors">Produk</a>
+                </li>
+                <li class="flex items-center">
+                    <svg class="h-4 w-4 text-indigo-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="ml-2 text-white">Detail Produk</span>
+                </li>
+            </ol>
+        </nav>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white animate-slide-up">{{ produk.nama }}</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in">
+        <div class="p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">{{ produk.nama }}</h2>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {% if produk.tersedia %}bg-emerald-100 text-emerald-800{% else %}bg-red-100 text-red-800{% endif %}">
+                            <i class="bi {% if produk.tersedia %}bi-check-circle{% else %}bi-x-circle{% endif %} mr-1"></i>
+                            {% if produk.tersedia %}Tersedia{% else %}Tidak Tersedia{% endif %}
+                        </span>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                            <i class="bi bi-info-circle mr-2 text-indigo-600"></i> Deskripsi
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">{{ produk.deskripsi }}</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                            <i class="bi bi-card-list mr-2 text-indigo-600"></i> Informasi Produk
+                        </h3>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <dl class="space-y-4">
+                                <div class="flex items-center">
+                                    <dt class="w-40 text-sm font-medium text-gray-700 flex items-center">
+                                        <i class="bi bi-tag mr-2 text-indigo-600"></i> Harga
+                                    </dt>
+                                    <dd class="text-sm text-gray-900 font-semibold">Rp{{ produk.harga }}</dd>
+                                </div>
+                                <div class="flex items-center">
+                                    <dt class="w-40 text-sm font-medium text-gray-700 flex items-center">
+                                        <i class="bi bi-clock-history mr-2 text-indigo-600"></i> Ditambahkan
+                                    </dt>
+                                    <dd class="text-sm text-gray-900">{{ produk.created_at|date:"d F Y, H:i" }}</dd>
+                                </div>
+                                <div class="flex items-center">
+                                    <dt class="w-40 text-sm font-medium text-gray-700 flex items-center">
+                                        <i class="bi bi-clock mr-2 text-indigo-600"></i> Terakhir diupdate
+                                    </dt>
+                                    <dd class="text-sm text-gray-900">{{ produk.updated_at|date:"d F Y, H:i" }}</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="bi bi-gear mr-2 text-indigo-600"></i> Aksi
+                        </h3>
+                        <div class="space-y-3">
+                            <a href="{% url 'edit_produk' produk.id %}" class="block w-full text-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg bg-yellow-600 text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-300 hover:scale-105">
+                                <i class="bi bi-pencil mr-2"></i> Edit Produk
+                            </a>
+                            <a href="{% url 'hapus_produk' produk.id %}" class="block w-full text-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 hover:scale-105" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">
+                                <i class="bi bi-trash mr-2"></i> Hapus Produk
+                            </a>
+                            <a href="{% url 'daftar_produk' %}" class="block w-full text-center px-4 py-2 border border-gray-200 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 hover:scale-105">
+                                <i class="bi bi-arrow-left mr-2"></i> Kembali ke Daftar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

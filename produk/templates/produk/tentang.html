@@ -1,0 +1,177 @@
+{% extends 'produk/base.html' %}
+
+{% block title %}Tentang - Toko Kita{% endblock %}
+
+{% block hero %}
+<div class="bg-gradient-to-r from-indigo-700 to-indigo-900 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white animate-slide-up">Tentang Toko Kita</h1>
+        <p class="mt-4 text-lg text-indigo-100 animate-slide-up">Kenali sistem manajemen produk kami yang inovatif</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in">
+        <div class="p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Sistem Manajemen Produk</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Toko Kita adalah platform modern untuk mengelola katalog produk dengan efisien. Antarmuka intuitif dan fitur lengkap membantu Anda mengatur produk, melacak stok, dan menampilkan informasi secara menarik.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Dibuat sebagai proyek pembelajaran Django, Toko Kita mengutamakan kesederhanaan dan pengalaman pengguna yang optimal.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Fitur Utama</h3>
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start transform hover:scale-105 transition-all duration-300">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-600 text-white">
+                                    <i class="bi bi-plus-circle text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Manajemen Produk Lengkap</h4>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Tambah, edit, dan hapus produk dengan antarmuka yang ramah pengguna.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start transform hover:scale-105 transition-all duration-300">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-600 text-white">
+                                    <i class="bi bi-grid text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Katalog Interaktif</h4>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Tampilkan produk dengan fitur pencarian dan filter yang cepat.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start transform hover:scale-105 transition-all duration-300">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-600 text-white">
+                                    <i class="bi bi-info-circle text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Detail Komprehensif</h4>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Informasi produk ditampilkan secara terstruktur dan mudah diakses.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start transform hover:scale-105 transition-all duration-300">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-600 text-white">
+                                    <i class="bi bi-check-circle text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-900">Status Ketersediaan</h4>
+                                <p class="mt-2 text-gray-600 text-sm">
+                                    Tandai produk tersedia atau tidak untuk informasi stok akurat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Teknologi</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Dibangun dengan teknologi modern untuk performa terbaik:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center">
+                                <i class="bi bi-code-slash text-indigo-600 text-xl"></i>
+                                <h4 class="ml-2 text-lg font-medium text-gray-900">Django</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                Framework Python untuk pengembangan web cepat.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center">
+                                <i class="bi bi-palette text-indigo-600 text-xl"></i>
+                                <h4 class="ml-2 text-lg font-medium text-gray-900">Tailwind CSS</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                Utility-first CSS untuk desain responsif.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center">
+                                <i class="bi bi-database text-indigo-600 text-xl"></i>
+                                <h4 class="ml-2 text-lg font-medium text-gray-900">SQLite</h4>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">
+                                Database ringan untuk penyimpanan data.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="bi bi-person-lines-fill mr-2 text-indigo-600"></i> Kontak
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="bi bi-envelope text- text-indigo-600 text-xl mt-1"></i>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 text-sm font-medium">Email</p>
+                                    <p class="text-gray-600 text-sm"><a href="mailto:info@tokokita.com" class="hover:text-indigo-600">info@tokokita.com</a></p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="bi bi-telephone text-indigo-600 text-xl mt-1"></i>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 text-sm font-medium">Telepon</p>
+                                    <p class="text-gray-600 text-sm"><a href="tel:+621234567890" class="hover:text-indigo-600">+62 123 4567 890</a></p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="bi bi-geo-alt text-indigo-600 text-xl mt-1"></i>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 text-sm font-medium">Alamat</p>
+                                    <p class="text-gray-600 text-sm">Jalan Contoh No. 123<br>Jakarta, Indonesia 12345</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-4 flex items-center">
+                            <i class="bi bi-headset mr-2"></i> Butuh Bantuan?
+                        </h3>
+                        <p class="text-indigo-700 text-sm mb-4">
+                            Tim kami siap membantu dengan pertanyaan seputar Toko Kita.
+                        </p>
+                        <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 hover:scale-105">
+                            <i class="bi bi-headset mr-2"></i> Hubungi Kami
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 text-center">
+        <h3 class="text-3xl font-bold text-gray-900 animate-slide-up">Mulai Gunakan Toko Kita Sekarang</h3>
+        <p class="mt-4 text-gray-600 max-w-2xl mx-auto animate-slide-up">
+            Kelola produk dengan efisien dan buat katalog yang menarik untuk pelanggan Anda.
+        </p>
+        <div class="mt-6 animate-slide-up">
+            <a href="{% url 'tambah_produk' %}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 hover:scale-105">
+                <i class="bi bi-plus-circle mr-2"></i> Tambah Produk Pertama
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

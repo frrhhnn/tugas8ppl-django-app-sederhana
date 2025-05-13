@@ -1,195 +1,106 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Toko Kita{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            300: '#a5b4fc',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        .hero-pattern {
-            background-color: #4338ca;
-            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+        .animate-slide-up { animation: slideUp 0.5s ease-out; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans leading-relaxed tracking-wide flex flex-col min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+<body class="bg-gray-50 font-sans antialiased">
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <a href="/" class="flex-shrink-0 flex items-center">
-                        <i class="fas fa-store text-primary-600 text-2xl mr-2"></i>
-                        <span class="text-xl font-bold text-gray-800">Toko Kita</span>
-                    </a>
+                    <a href="{% url 'home' %}" class="text-2xl font-extrabold text-indigo-600">Toko Kita</a>
                 </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:ml-6 md:flex md:space-x-8 items-center">
-                    <a href="/" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
-                        <i class="fas fa-home mr-1"></i> Beranda
-                    </a>
-                    <a href="/produk/" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
-                        <i class="fas fa-box mr-1"></i> Produk
-                    </a>
-                    <a href="/produk/tambah/" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
-                        <i class="fas fa-plus-circle mr-1"></i> Tambah Produk
-                    </a>
-                    <a href="/tentang/" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
-                        <i class="fas fa-info-circle mr-1"></i> Tentang
-                    </a>
-                    <a href="#" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition duration-150 ease-in-out">
-                        <i class="fas fa-sign-in-alt mr-2"></i> Login
-                    </a>
-                </nav>
-                
-                <!-- Mobile menu button -->
-                <div class="flex items-center md:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
-                        <i class="fas fa-bars text-xl"></i>
+                <div class="hidden md:flex space-x-6">
+                    <a href="{% url 'home' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Home</a>
+                    <a href="{% url 'daftar_produk' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Produk</a>
+                    <a href="{% url 'tambah_produk' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Tambah Produk</a>
+                    <a href="{% url 'tentang' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Tentang</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
+                        <i class="bi bi-list text-2xl"></i>
                     </button>
                 </div>
             </div>
-        </div>
-        
-        <!-- Mobile menu, show/hide based on menu state -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">
-                    <i class="fas fa-home mr-2"></i> Beranda
-                </a>
-                <a href="/produk/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">
-                    <i class="fas fa-box mr-2"></i> Produk
-                </a>
-                <a href="/produk/tambah/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">
-                    <i class="fas fa-plus-circle mr-2"></i> Tambah Produk
-                </a>
-                <a href="/tentang/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">
-                    <i class="fas fa-info-circle mr-2"></i> Tentang
-                </a>
-                <a href="/login/" class="mt-4 block w-full px-4 py-2 text-center text-white bg-primary-600 hover:bg-primary-700 rounded-md shadow-sm font-medium">
-                    <i class="fas fa-sign-in-alt mr-2"></i> Login
-                </a>
+            <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+                <div class="flex flex-col space-y-2 py-4 px-4">
+                    <a href="{% url 'home' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Home</a>
+                    <a href="{% url 'daftar_produk' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Produk</a>
+                    <a href="{% url 'tambah_produk' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Tambah Produk</a>
+                    <a href="{% url 'tentang' %}" class="text-gray-700 hover:text-indigo-600 transition-colors py-2">Tentang</a>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
-    
-    {% block hero %}    {% endblock %}
 
-    <!-- Main Content -->
-    <main class="flex-grow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            {% block content %}
-            <!-- Default content -->
-            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-                <div class="px-4 py-5 sm:px-6">
-                    <h2 class="text-lg leading-6 font-medium text-gray-900">Selamat datang di Toko Kita</h2>
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Silakan jelajahi produk kami atau tambahkan produk baru.</p>
-                </div>
-                <div class="border-t border-gray-200">
-                    <dl>
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Produk Terbaru</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                        <div class="w-0 flex-1 flex items-center">
-                                            <i class="fas fa-box flex-shrink-0 h-5 w-5 text-gray-400"></i>
-                                            <span class="ml-2 flex-1 w-0 truncate">Produk Contoh 1</span>
-                                        </div>
-                                        <div class="ml-4 flex-shrink-0">
-                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500">Lihat</a>
-                                        </div>
-                                    </li>
-                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                        <div class="w-0 flex-1 flex items-center">
-                                            <i class="fas fa-box flex-shrink-0 h-5 w-5 text-gray-400"></i>
-                                            <span class="ml-2 flex-1 w-0 truncate">Produk Contoh 2</span>
-                                        </div>
-                                        <div class="ml-4 flex-shrink-0">
-                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500">Lihat</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </div>
-                    </dl>
-                </div>
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {% for message in messages %}
+        <div class="mb-4 rounded-lg bg-opacity-90 {% if message.tags == 'success' %}bg-green-50 border-l-4 border-green-500{% elif message.tags == 'error' %}bg-red-50 border-l-4 border-red-500{% else %}bg-blue-50 border-l-4 border-blue-500{% endif %} p-4 animate-fade-in">
+            <div class="flex items-center">
+                <i class="bi {% if message.tags == 'success' %}bi-check-circle{% elif message.tags == 'error' %}bi-x-circle{% else %}bi-info-circle{% endif %} text-xl mr-3 {% if message.tags == 'success' %}text-green-600{% elif message.tags == 'error' %}text-red-600{% else %}text-blue-600{% endif %}"></i>
+                <p class="text-sm {% if message.tags == 'success' %}text-green-700{% elif message.tags == 'error' %}text-red-700{% else %}text-blue-700{% endif %}">{{ message }}</p>
             </div>
-            {% endblock %}
         </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% block hero %}{% endblock %}
+
+    <main class="min-h-screen">
+        {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="md:flex md:items-center md:justify-between">
-                <div class="flex justify-center md:justify-start space-x-6">
-                    <a href="#" class="text-gray-500 hover:text-gray-700">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-700">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-700">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-700">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Toko Kita</h3>
+                    <p class="text-sm leading-relaxed">Sistem manajemen produk modern yang memudahkan pengelolaan katalog dengan efisien dan elegan.</p>
                 </div>
-                <div class="mt-8 md:mt-0 md:order-1">
-                    <p class="text-center text-base text-gray-500">&copy; 2025 Toko Kita. Hak Cipta Dilindungi.</p>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Navigasi</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{% url 'home' %}" class="hover:text-indigo-400 transition-colors">Home</a></li>
+                        <li><a href="{% url 'daftar_produk' %}" class="hover:text-indigo-400 transition-colors">Produk</a></li>
+                        <li><a href="{% url 'tentang' %}" class="hover:text-indigo-400 transition-colors">Tentang</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Kontak</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mailto:info@tokokita.com" class="hover:text-indigo-400 transition-colors">info@tokokita.com</a></li>
+                        <li><a href="tel:+621234567890" class="hover:text-indigo-400 transition-colors">+62 123 4567 890</a></li>
+                        <li>Jalan Contoh No. 123, Jakarta, Indonesia</li>
+                    </ul>
                 </div>
             </div>
-            <div class="mt-4 pt-4 border-t border-gray-200 md:flex md:items-center md:justify-between">
-                <div class="flex justify-center md:justify-start space-x-6">
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-700">Kebijakan Privasi</a>
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-700">Syarat & Ketentuan</a>
-                    <a href="#" class="text-sm text-gray-500 hover:text-gray-700">Bantuan</a>
-                </div>
-                <div class="mt-4 md:mt-0">
-                    <p class="text-center text-sm text-gray-500">Dibuat dengan <i class="fas fa-heart text-red-500"></i> di Indonesia</p>
-                </div>
+            <div class="mt-8 border-t border-gray-800 pt-6 text-center text-sm">
+                © 2025 Toko Kita. All rights reserved.
             </div>
         </div>
     </footer>
-    
+
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
 </body>
